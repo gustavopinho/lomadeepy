@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup
+import setuptools
 
-setup(
+setuptools.setup(
     name='api-lomadee-v3',
     version='0.0.1',
     url='https://github.com/gustavopinho/api-lomadee-v3',
@@ -10,6 +10,6 @@ setup(
     author_email='gustavopinho@gustavopinho.com',
     keywords='api lomadee python ofertas',
     description=u'Implementação da API de ofertas do lomadee em Python.',
-    packages=['api-lomadee-v3'],
-    install_requires=['Python3', 'requests'],
+    packages=setuptools.find_packages(),
+    install_requires=['requests'],
 )
