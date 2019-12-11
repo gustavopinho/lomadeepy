@@ -37,11 +37,61 @@ class Offers(Lomadee):
         resource = "offer/_store/{0}".format(store_id)
         return self.get(resource, **params)
 
-    def offer(self, offer_id, **params):
+    def offer(self, store_id, offer_id, **params):
         resource = "offer/_id/{0}".format(offer_id)
+        params.update({'storeId' : store_id})
         return self.get(resource, **params)
 
     def search(self, keyword, **params):
         resource = "offer/_search"
-        params.add({'keyword' : keyword})
+        params.update({'keyword' : keyword})
+        return self.get(resource, **params)
+
+class Categories(Lomadee):
+    
+    def all(self, **params):
+        resource = "category/_all"
+        return self.get(resource, **params)
+
+    def category(self, category_id, **params):
+        resource = "category/_id/{0}".format(category_id)
+        return self.get(resource, **params)
+
+    def search(self, keyword, **params):
+        resource = "category/_search"
+        params.update({'keyword' : keyword})
+        return self.get(resource, **params)
+
+
+class Stores(Lomadee):
+
+    def all(self, **params):
+        resource = "store/_all"
+        return self.get(resource, **params)
+
+
+class Coupons(Lomadee):
+
+    def all(self, **params):
+        resource = "coupon/_all"
+        return self.get(resource, **params)
+
+    def coupon(self, coupon_id, **params):
+        resource = "coupon/_id/{0}".format(coupon_id)
+        return self.get(resource, **params)
+
+    def categories(self, **params):
+        resource = "coupon/_categories"
+        return self.get(resource, **params)
+    
+    def stores(self, **params):
+        resource = "coupon/_stores"
+        return self.get(resource, **params)
+
+
+class DeepLink(Lomadee):
+
+    def create(self, url, **params):
+        resource = "deeplink/_create"
+        params.update({'url' : url})
         return self.get(resource, **params)
