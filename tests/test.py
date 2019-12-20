@@ -1,7 +1,7 @@
 import os
 import unittest
 from dotenv import load_dotenv
-from .lomadee import Offers, Categories, Stores, Coupons, DeepLink
+from lomadeepy import Offers, Categories, Stores, Coupons, DeepLink
 
 def load_env():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
