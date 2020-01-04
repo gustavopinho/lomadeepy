@@ -2,14 +2,14 @@
 import setuptools
 
 setuptools.setup(
-    name='api-lomadee-v3',
+    name='lomadeepy',
     version='0.0.2',
-    url='https://github.com/gustavopinho/api-lomadee-v3',
+    url='https://github.com/gustavopinho/lomadeepy.git',
     license='MIT License',
     author='Gustavo Pinho',
-    author_email='gustavopinho@gustavopinho.com',
+    author_email='dev@gustavopinho.com',
     keywords='api lomadee python ofertas',
-    description=u'Implementação da API de ofertas do lomadee em Python.',
+    description=u'Implementação da API de ofertas do lomadee em Python. Não Oficial.',
     package_dir={"": "src"},
     packages=['lomadeepy'],
     install_requires=['requests'],

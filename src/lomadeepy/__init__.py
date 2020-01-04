@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 def joke():
-    return (u'Api de Ofertas Lomadee V3')
+    return (u'Api de Ofertas Lomadee não oficial')
 
-from .lomadee import *
+from .lomadee import (Offers, Categories, Stores, Coupons, DeepLink)
