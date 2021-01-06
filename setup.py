@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name='lomadeepy',
-    version='0.0.2',
+    version='0.0.3',
     url='https://github.com/gustavopinho/lomadeepy.git',
     license='MIT License',
     author='Gustavo Pinho',
@@ -13,6 +13,6 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=['lomadeepy'],
     install_requires=['requests'],
-    test_suite = 'tests',
+    test_suite='tests',
     tests_require=['requests'],
 )
