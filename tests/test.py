@@ -3,22 +3,31 @@ import unittest
 from dotenv import load_dotenv
 from lomadeepy import Offers, Categories, Stores, Coupons, DeepLink
 
+
 def load_env():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+
 class TestOffers(unittest.TestCase):
-    
+
     @classmethod
     def setUpClass(self):
         load_env()
-        self.offers =  Offers(
+        self.offers = Offers(
             os.environ.get('APP_TOKEN'),
             os.environ.get('SOURCE_ID'),
             sandbox=True,
             version='v3'
         )
-   
+
+    def test_bestsellers(self):
+        response = self.offers.bestsellers(page=1, size=5)
+        self.assertEqual(response['requestInfo']['status'], 'OK')
+        self.assertEqual(response['requestInfo']['message'], 'SUCCESS')
+        self.assertEqual(response['pagination']['page'], 1)
+        self.assertEqual(response['pagination']['size'], 5)
+
     def test_category(self):
         response = self.offers.category(
             '77', page=1, size=10
@@ -39,7 +48,7 @@ class TestOffers(unittest.TestCase):
 
     def test_offer(self):
         response = self.offers.offer(
-            '5632','1218071477'
+            '6342', '265'
         )
         self.assertEqual(response['requestInfo']['status'], 'OK')
         self.assertEqual(response['requestInfo']['message'], 'SUCCESS')
@@ -61,7 +70,7 @@ class TestCategories(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         load_env()
-        self.categories =  Categories(
+        self.categories = Categories(
             os.environ.get('APP_TOKEN'),
             os.environ.get('SOURCE_ID'),
             sandbox=True,
@@ -87,11 +96,11 @@ class TestCategories(unittest.TestCase):
 
 
 class TestStores(unittest.TestCase):
-    
+
     @classmethod
     def setUpClass(self):
         load_env()
-        self.stores =  Stores(
+        self.stores = Stores(
             os.environ.get('APP_TOKEN'),
             os.environ.get('SOURCE_ID'),
             sandbox=True,
@@ -109,7 +118,7 @@ class TestCoupons(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         load_env()
-        self.coupons =  Coupons(
+        self.coupons = Coupons(
             os.environ.get('APP_TOKEN'),
             os.environ.get('SOURCE_ID'),
             sandbox=True,
@@ -122,7 +131,7 @@ class TestCoupons(unittest.TestCase):
         self.assertEqual(response['requestInfo']['message'], 'SUCCESS')
 
     def test_coupon(self):
-        response = self.coupons.coupon('8165')
+        response = self.coupons.coupon('9768')
         self.assertEqual(response['requestInfo']['status'], 'OK')
         self.assertEqual(response['requestInfo']['message'], 'SUCCESS')
 
@@ -142,7 +151,7 @@ class TestDeepLink(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         load_env()
-        self.deepLink =  DeepLink(
+        self.deepLink = DeepLink(
             os.environ.get('APP_TOKEN'),
             os.environ.get('SOURCE_ID'),
             sandbox=True,

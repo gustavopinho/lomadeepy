@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 
+
 class Lomadee():
     sandbox_url = "http://sandbox-api.lomadee.com/{0}/{1}/{2}"
     production_url = "https://api.lomadee.com/{0}/{1}/{2}"
@@ -17,7 +18,7 @@ class Lomadee():
         return self.production_url.format(self.version, self.app_token, resource)
 
     def get_params(self, **params):
-        params.update({'sourceId' : self.source_id })
+        params.update({'sourceId': self.source_id})
         return params
 
     def get(self, resource, **params):
@@ -28,7 +29,11 @@ class Lomadee():
 
 
 class Offers(Lomadee):
-    
+
+    def bestsellers(self, **params):
+        resource = "offer/_bestsellers"
+        return self.get(resource=resource, **params)
+
     def category(self, category_id, **params):
         resource = "offer/_category/{0}".format(category_id)
         return self.get(resource=resource, **params)
@@ -39,16 +44,17 @@ class Offers(Lomadee):
 
     def offer(self, store_id, offer_id, **params):
         resource = "offer/_id/{0}".format(offer_id)
-        params.update({'storeId' : store_id})
+        params.update({'storeId': store_id})
         return self.get(resource, **params)
 
     def search(self, keyword, **params):
         resource = "offer/_search"
-        params.update({'keyword' : keyword})
+        params.update({'keyword': keyword})
         return self.get(resource, **params)
 
+
 class Categories(Lomadee):
-    
+
     def all(self, **params):
         resource = "category/_all"
         return self.get(resource, **params)
@@ -59,7 +65,7 @@ class Categories(Lomadee):
 
     def search(self, keyword, **params):
         resource = "category/_search"
-        params.update({'keyword' : keyword})
+        params.update({'keyword': keyword})
         return self.get(resource, **params)
 
 
@@ -83,7 +89,7 @@ class Coupons(Lomadee):
     def categories(self, **params):
         resource = "coupon/_categories"
         return self.get(resource, **params)
-    
+
     def stores(self, **params):
         resource = "coupon/_stores"
         return self.get(resource, **params)
@@ -93,5 +99,5 @@ class DeepLink(Lomadee):
 
     def create(self, url, **params):
         resource = "deeplink/_create"
-        params.update({'url' : url})
+        params.update({'url': url})
         return self.get(resource, **params)
